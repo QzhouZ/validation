@@ -6,24 +6,25 @@
  */
 define(function (require, exports, module) {
     'use strict';
-    require("lib/jquery.form");
+    var popup = require("custom/popup");
+                require("form");
     var validatebox = function(options) {
         var _default = {
-			formId: "#form",
-			validDom: ".form-group",
+            formId: "#form",
+            validDom: ".form-group",
             validSuccess: function(ele,msg) {
                 $(ele).parents(validDom).removeClass("error").find(".err-msg").text("");
             },
             validError: function(ele,msg) {
-				var msg = $(ele).data("msg") || msg;
+                var msg = $(ele).data("msg") || msg;
                 $(ele).parents(validDom).addClass("error").find(".err-msg").text(msg);
             },
             ajaxSuccess: function(data) {
-                
+               
             }
         };
         var opts = $.extend({},_default,options);
-		var validDom = opts.validDom;
+        var validDom = opts.validDom;
         var $formId = $(opts.formId);
         var validSuccess = opts.validSuccess;
         var validError = opts.validError;
@@ -34,13 +35,13 @@ define(function (require, exports, module) {
         var defaultBtnText = $formId.find("button[type='submit']").html();
         if ($formId.find(".err-tip-content").length < 1) {
 //            $formId.find(validDom).append("<span class='err-tip-content'><label class='err-msg'></label></span>");
-			$formId.find(validDom).each(function() {
-				var w = $(this).width() + 7;
-				$(this).append('<div class="err-tip-content" style="left:'+w+'px"><div class="err-box"><div class="tri-right"></div><div class="err-msg"></div></div></div>')
-			});
+            $formId.find(validDom).each(function() {
+                var w = $(this).width() + 7;
+                $(this).append('<div class="err-tip-content" style="left:'+w+'px"><div class="err-box"><div class="tri-right"></div><div class="err-msg"></div></div></div>')
+            });
         }
         $.validate = {
-            validator: function(type, value) {
+            validator: function(type, value, param) {
                 var rules = {
                     noEmpty: {
                         isValid: function(value) {
@@ -68,6 +69,12 @@ define(function (require, exports, module) {
                         },
                         message: "请输入5~10位，账号需字母开头"
                     },
+                    safepass: {
+                        isValid: function(value) {
+                            return !(/^(([A-Z]*|[a-z]*|\d*|[-_\~!@#\$%\^&\*\.\(\)\[\]\{\}<>\?\\\/\'\"]*)|.{0,5})$|\s/.test(value));
+                        },
+                        message: '密码由字母和数字组成，至少6位'
+                    },
                     same: {
                         isValid: function(value) {
                             var valOld = $(".J_old").val();
@@ -86,21 +93,32 @@ define(function (require, exports, module) {
                             return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value);
                         },
                         message: "请输入有效的身份证号码"
+                    },
+                    length: {
+                        isValid: function(value, param) {
+                            var p = JSON.parse(param);
+                            if (p[1]) {
+                                return value.length >= p[0] && value.length <= p[1];
+                            } else {
+                                return value.length >= p[0];
+                            }
+                        },
+                        message: "请输入有效的字数"
                     }
                 };
                 return {
-                    isValid: rules[type].isValid(value),
+                    isValid: rules[type].isValid(value, param),
                     message: rules[type].message
                 }
             },
-            handle: function(type,element) {
+            handle: function(type, element, param) {
                 var validator = this.validator;
                 var $input = $formId.find(element);
                 $input.addClass("validate");
                 $input.on("focus change", function(e) {
                     var value = $(this).val();
-                    var msg = validator(type, value).message;
-                    if (!validator(type, value).isValid) {
+                    var msg = validator(type, value, param).message;
+                    if (!validator(type,value,param).isValid) {
                         validError($(this), msg);
                     } else {
                         validSuccess($(this));
@@ -142,10 +160,16 @@ define(function (require, exports, module) {
                 });
             }
         };
-		$formId.find("[data-validtype]").each(function() {
-			var type = $(this).data("validtype");
-			$.validate.handle(""+type+"",$(this));
-		});
+        $formId.find("[data-validtype]").each(function() {
+            var param;
+            var type = $(this).data("validtype");
+            var indexOf =  type.indexOf("[");
+            if (indexOf > -1) {
+                param = type.substr(indexOf);
+                type = type.substr(0, indexOf);
+            }
+            $.validate.handle(""+type+"", $(this), param);
+        });
         $.validate.onSubmit();
     };
     module.exports = validatebox;

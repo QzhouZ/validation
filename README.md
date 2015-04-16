@@ -8,7 +8,8 @@
 邮箱地址``data-validtype="email"``,		
 数字``data-validtype="number"``,	
 手机号码``data-validtype="mobile"``,	
-身份证号码``data-validtype="idCard"``,  
+身份证号码``data-validtype="idCard"``, 
+长度验证``data-validtype="length[1,3]"``,[]里填写长度限制     
 通过``data-msg=""``,可以修改提示内容
 
 ###表单里的html结构
