@@ -6,8 +6,7 @@
  */
 define(function (require, exports, module) {
     'use strict';
-    var popup = require("custom/popup");
-                require("form");
+    require("lib/jquery.form");
     var validatebox = function(options) {
         var _default = {
             formId: "#form",
