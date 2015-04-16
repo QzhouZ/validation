@@ -5,7 +5,7 @@
 在表单输入框里加``入data-validtype=""``,	
 目前验证规则有：	
 不能为空``data-validtype="noEmpty"``,	
-邮箱地址``data-validtype="email"``,	
+邮箱地址``data-validtype="email"``,		
 数字``data-validtype="number"``,	
 手机号码``data-validtype="mobile"``,	
 身份证号码``data-validtype="idCard"``,	
@@ -17,7 +17,7 @@
 		<div class="form-group">
 	        <label>
 	            <span class="label">登录账号：</span>
-	            <input type="text" data-validtype="account" data-msg="请输入5~10位，账号需字母开头" />
+	            <input type="text" data-validtype="account" data-msg="请输入5~10位" />
 	        </label>
 	    </div>
 	    <div class="form-group">
