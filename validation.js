@@ -76,7 +76,7 @@ define(function (require, exports, module) {
                     },
                     same: {
                         isValid: function(value) {
-                            var valOld = $(".J_old").val();
+                            var valOld = $formId.find(".J_old").val();
                             return  value == valOld? true :false;
                         },
                         message: "两次密码不一致"
