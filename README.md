@@ -74,6 +74,22 @@
 	</script>
 
 ## 配置说明
-- ``formId``: String(default: "#form")需要实例化的表单ID
-- ``beforeSubmit``: Function(default:none)表单提交前的操作回调
-- ``ajaxSuccess``: Function(default:none)表单提交成功后的回调
+- ``formId``: String (default: "#form") 需要实例化的表单ID
+- ``beforeSubmit``: Function (default: null) 表单提交前的操作回调
+- ``ajaxSuccess``: Function (default: none) 表单提交成功后的回调
+
+## 配置说明
+#### formId
+需要实例化的表单ID
+Type: String
+Default: "#form"
+
+#### beforeSubmit
+表单提交前的操作回调
+Type: Function
+Default: null
+
+#### ajaxSuccess
+表单提交成功后的回调
+Type: Function
+Default: null
