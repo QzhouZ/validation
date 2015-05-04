@@ -80,16 +80,16 @@
 
 ## 配置说明
 #### formId
-需要实例化的表单ID
-Type: String
+需要实例化的表单ID 
+Type: String 
 Default: "#form"
 
 #### beforeSubmit
-表单提交前的操作回调
-Type: Function
+表单提交前的操作回调 
+Type: Function 
 Default: null
 
 #### ajaxSuccess
-表单提交成功后的回调
-Type: Function
+表单提交成功后的回调 
+Type: Function 
 Default: null
