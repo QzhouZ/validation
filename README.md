@@ -79,6 +79,11 @@
 Type: String	
 Default: "#form"
 
+#### validDom
+输入框验证区块，所有的输入框验证区块的class必须保持统一的类名
+Type: String	
+Default: ".form-group"
+
 #### beforeSubmit
 表单提交前的操作回调	
 Type: Function	 
