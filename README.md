@@ -1,7 +1,7 @@
-# validation
+#validation
 表单验证插件
 
-###使用说明
+##使用说明
 在表单输入框里加``入data-validtype=""``,	
 目前验证规则有：	
 不能为空``data-validtype="noEmpty"``,	
@@ -12,7 +12,7 @@
 长度验证``data-validtype="length[1,3]"``,``[]``里填写长度限制      
 通过``data-msg=""``,可以修改提示内容
 
-###表单里的html结构
+##表单里的html结构
 
 	<form id="form" action="" method="post">
 		<div class="form-group">
@@ -63,7 +63,7 @@
 	    </div>
 	</form>
 
-###相关属性说明
+##相关属性说明
 
 	seajs.use("validation", function(validatebox) {
 	    validatebox({
