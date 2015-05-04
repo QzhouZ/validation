@@ -167,7 +167,7 @@ define(function (require, exports, module) {
                 param = type.substr(indexOf);
                 type = type.substr(0, indexOf);
             }
-            $.validate.handle(""+type+"", $(this), param);
+            $.validate.handle(type, $(this), param);
         });
         $.validate.onSubmit();
     };

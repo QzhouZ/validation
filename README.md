@@ -74,10 +74,6 @@
 	</script>
 
 ## 配置说明
-### formId ``string`` 
-对应表单ID
-### beforeSubmit ``function``
-提交前操作
-### ajaxSuccess ``function``
-表单提交成功后的回调	
-    
+- ``formId``: String(default: "#form")需要实例化的表单ID
+- ``beforeSubmit``: Function(default:none)表单提交前的操作回调
+- ``ajaxSuccess``: Function(default:none)表单提交成功后的回调
