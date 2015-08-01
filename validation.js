@@ -1,7 +1,7 @@
 /**
  * 表单验证
  * author: Qzhou 448482356@qq.com
- * date: 2015-04-14 - 2015-04-16
+ * date: 2015-04-14 - 2015-07-09
  * Free to use under terms of MIT license
  */
 define(function (require, exports, module) {
@@ -15,8 +15,20 @@ define(function (require, exports, module) {
                 $(ele).parents(validDom).removeClass("error").find(".err-msg").text("");
             },
             validError: function(ele,msg) {
-                var msg = $(ele).data("msg") || msg;
-                $(ele).parents(validDom).addClass("error").find(".err-msg").text(msg);
+                var tipMsg;
+                $(ele).parents(validDom).addClass("error");
+                if ($(ele).data("msg") === false) {
+                    return false;
+                } else {
+                    tipMsg = $(ele).data("msg") || msg;
+                }
+                if ($(ele).parent().find(".err-tip-content").length < 1) {
+                    var w = $(ele).outerWidth();
+                    var h = $(ele).outerHeight();
+                    var left = $(ele).position().left+w+7;
+                    var top = (h-24)/2;
+                    $(ele).after('<div class="err-tip-content" style="left:'+left+'px;top:'+top+'px;"><div class="err-box"><div class="tri-right"></div><div class="err-msg">'+tipMsg+'</div></div></div>');
+                }
             },
             ajaxSuccess: function(data) {
                
@@ -32,13 +44,6 @@ define(function (require, exports, module) {
         var reload = opts.reload || 0;
         var $formBtn = $formId.find("button[type='submit']");
         var defaultBtnText = $formId.find("button[type='submit']").html();
-        if ($formId.find(".err-tip-content").length < 1) {
-//            $formId.find(validDom).append("<span class='err-tip-content'><label class='err-msg'></label></span>");
-            $formId.find(validDom).each(function() {
-                var w = $(this).width() + 7;
-                $(this).append('<div class="err-tip-content" style="left:'+w+'px"><div class="err-box"><div class="tri-right"></div><div class="err-msg"></div></div></div>')
-            });
-        }
         $.validate = {
             validator: function(type, value, param) {
                 var rules = {
@@ -76,7 +81,7 @@ define(function (require, exports, module) {
                     },
                     same: {
                         isValid: function(value) {
-                            var valOld = $formId.find(".J_old").val();
+                            var valOld = $formId .find(".J_old").val();
                             return  value == valOld? true :false;
                         },
                         message: "两次密码不一致"

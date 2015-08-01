@@ -17,48 +17,48 @@
 	<form id="form" action="" method="post">
 		<div class="form-group">
 	        <label>
-	            <span class="label">登录账号：</span>
+	            <span class="field">登录账号：</span>
 	            <input type="text" data-validtype="account" data-msg="请输入5~10位" />
 	        </label>
 	    </div>
 	    <div class="form-group">
 	        <label>
-	            <span class="label">手机号码：</span>
+	            <span class="field">手机号码：</span>
 	            <input type="text" data-validtype="mobile" />
 	        </label>
 	    </div>
 	    <div class="form-group">
 	        <label>
-	            <span class="label">邮箱地址：</span>
+	            <span class="field">邮箱地址：</span>
 	            <input type="text" data-validtype="email" />
 	        </label>
 	    </div>
 	    <div class="form-group">
 	        <label>
-	            <span class="label">身份证号：</span>
+	            <span class="field">身份证号：</span>
 	            <input type="text" data-validtype="idCard" />
 	        </label>
 	    </div>
 	    <div class="form-group">
 	        <label>
-	            <span class="label">年龄：</span>
+	            <span class="field">年龄：</span>
 	            <input type="text" data-validtype="number" />
 	        </label>
 	    </div>
 	    <div class="form-group">
 	        <label>
-	            <span class="label">密码：</span>
+	            <span class="field">密码：</span>
 	            <input type="password" data-validtype="noEmpty" class="J_old" />
 	        </label>
 	    </div>
 	    <div class="form-group">
 	        <label>
-	            <span class="label">确认密码：</span>
+	            <span class="field">确认密码：</span>
 	            <input type="password" data-validtype="same" />
 	        </label>
 	    </div>
 	    <div class="form-group">
-	        <span class="label">&nbsp;</span>
+	        <span class="field">&nbsp;</span>
 	        <button class="btn btn-warning" type="submit" data-msg="保存中...">提交</button>
 	    </div>
 	</form>
