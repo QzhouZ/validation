@@ -1,6 +1,6 @@
 /**
  * 表单验证
- * author: Qzhou 448482356@qq.com
+ * author: Zane 448482356@qq.com
  * date: 2015-04-14 - 2015-07-09
  * Free to use under terms of MIT license
  */
@@ -12,7 +12,7 @@ define(function (require, exports, module) {
             formId: "#form",
             validDom: ".form-group",
             validSuccess: function(ele,msg) {
-                $(ele).parents(validDom).removeClass("error").find(".err-msg").text("");
+                $(ele).parents(validDom).removeClass("error").find(".err-tip-content").remove();
             },
             validError: function(ele,msg) {
                 var tipMsg;
@@ -119,7 +119,7 @@ define(function (require, exports, module) {
                 var validator = this.validator;
                 var $input = $formId.find(element);
                 $input.addClass("validate");
-                $input.on("focus change", function(e) {
+                $input.on("focus change keyup", function(e) {
                     var value = $(this).val();
                     var msg = validator(type, value, param).message;
                     if (!validator(type,value,param).isValid) {
