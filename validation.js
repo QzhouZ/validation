@@ -1,7 +1,7 @@
 /**
  * 表单验证
  * author: Zane 448482356@qq.com
- * date: 2015-04-14 - 2015-07-09
+ * date: 2015-04-14 - 2015-10-09
  * Free to use under terms of MIT license
  */
 define(function (require, exports, module) {
